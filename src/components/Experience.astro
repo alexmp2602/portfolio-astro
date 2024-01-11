@@ -1,0 +1,28 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+const EXPERIENCE = [
+  {
+    title: "Frontend Developer - Municipalidad de Mercedes Bs. As.",
+    description:
+      "Desarrollo de aplicaciones web para la gestión de la municipalidad.",
+    date: "2023 - Presente",
+    tags: ["React", "Next.js", "TailwindCSS", "Node.js", "Git"],
+  },
+  {
+    title: "Frontend Developer - Freelance",
+    description: "Desarrollo de aplicaciones web para clientes.",
+    date: "2022 - Presente",
+    tags: ["React", "Next.js", "TailwindCSS", "Node.js", "Git"],
+  },
+];
+---
+
+<ol class="relative border-s border-gray-200 ml-3">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>
