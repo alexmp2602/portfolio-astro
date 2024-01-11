@@ -1,0 +1,84 @@
+---
+import JavaScript from "./icons/JavaScript.astro";
+import Sass from "./icons/Sass.astro";
+import React from "./icons/React.astro";
+import NextJS from "./icons/NextJS.astro";
+import Tailwind from "./icons/Tailwind.astro";
+
+const TAGS = {
+  JAVASCRIPT: {
+    name: "JavaScript",
+    class: "bg-yellow-500 text-black",
+    icon: JavaScript,
+  },
+  SASS: {
+    name: "Sass",
+    class: "bg-[#CD6799] text-white",
+    icon: Sass,
+  },
+  REACT: {
+    name: "React",
+    class: "bg-[#61DAFB] text-black",
+    icon: React,
+  },
+  NEXT: {
+    name: "Next.js",
+    class: "bg-black text-white",
+    icon: NextJS,
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white",
+    icon: Tailwind,
+  },
+};
+const PROJECTS = [
+  {
+    title: "Portfolio antiguo React",
+    description:
+      "Este es mi portfolio antiguo, hecho con React. Lo hice para practicar React y Sass. El código está disponible en GitHub.",
+    link: "https://alexpereyra-dev.com/",
+    github: "https://github.com/Lexthus/Portfolio-React",
+    image: "/projects/Portfolio.webp",
+    tags: [TAGS.REACT, TAGS.SASS],
+  },
+  {
+    title: "IABOT - Cursos de Robótica en LEGO para Niños",
+    description:
+      "IABOT es una plataforma de cursos de robótica en LEGO para niños. El proyecto se encuentra en producción y se está trabajando en un nuevo diseño.",
+    link: "https://iabot.com.ar/",
+    github: "https://github.com/Lexthus/IA-BOT",
+    image: "/projects/IABOT.webp",
+    tags: [TAGS.JAVASCRIPT, TAGS.SASS],
+  },
+];
+---
+
+{
+  PROJECTS.map(({ image, title, description, tags }) => (
+    <article>
+      <h3 class="text-2xl font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+        {title}
+      </h3>
+      <p class="text-lg mb-4 text-pretty">{description}</p>
+      <ul class="flex gap-x-2 flex-row mb-2">
+        {tags.map((tag) => (
+          <li>
+            <span
+              class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 border border-white/10`}
+            >
+              <tag.icon class="size-4" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <img
+        loading="lazy"
+        class="rounded shadow-2xl shadow-white/10 aspect-video"
+        src={image}
+        alt={`Captura de pantalla del proyecto ${image}`}
+      />
+    </article>
+  ))
+}
