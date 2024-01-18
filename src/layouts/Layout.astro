@@ -38,8 +38,18 @@ const { description, title } = Astro.props
 
 <style is:global>
   :root {
-    color-scheme: light dark;
-  }
+      color-scheme: light dark;
+
+      /* Paleta "Flavor-Full" del "Color Of The Year 2024 - Pantone" */
+      --color-year: #ffbe98; /* Peach Fuzz */
+      --color-complementary: #ca9456; /* Honey Yellow */
+      --color-complementary-2: #97754c; /* Dijon */
+      --color-complementary-3: #babc72; /* Green Banana */
+      --color-complementary-4: #2c333e; /* Blueberry */
+      --color-complementary-5: #8398ca; /* Grapemist */
+      --color-complementary-6: #c54966; /* Party Punch */
+      --color-complementary-7: #cdb127; /* Mango Mint */
+    }
 
   html {
     font-family: "Onest Variable", system-ui, sans-serif;
@@ -47,6 +57,7 @@ const { description, title } = Astro.props
   }
 
   body {
+    margin: 0;
     color: rgba(17, 17, 17, 0.9);
     display: flex;
     flex-direction: column;
@@ -65,4 +76,42 @@ const { description, title } = Astro.props
       color: rgba(255, 255, 255, 0.9);
     }
   }
+
+  /* Colores de texto */
+  .text-color-year {
+      color: var(--color-year);
+    }
+
+    .text-color-complementary {
+      color: var(--color-complementary);
+    }
+
+    .text-color-complementary-2 {
+      color: var(--color-complementary-2);
+    }
+
+    .text-color-complementary-3 {
+      color: var(--color-complementary-3);
+    }
+
+    .text-color-complementary-4 {
+      color: var(--color-complementary-4);
+    }
+
+    .text-color-complementary-5 {
+      color: var(--color-complementary-5);
+    }
+
+    .text-color-complementary-6 {
+      color: var(--color-complementary-6);
+    }
+
+    .text-color-complementary-7 {
+      color: var(--color-complementary-7);
+    }
+
+    /* Estilo para los enlaces al pasar el ratón */
+    a:hover {
+      color: var(--color-complementary-6);
+    }
 </style>
