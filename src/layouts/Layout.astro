@@ -1,15 +1,16 @@
 ---
-import "@fontsource-variable/onest"
+import "@fontsource-variable/onest";
 
-import Header from "../components/Header.astro"
-import Footer from "../components/Footer.astro"
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { ViewTransitions } from "astro:transitions"
 
 interface Props {
-  title: string
-  description: string
+  title: string;
+  description: string;
 }
 
-const { description, title } = Astro.props
+const { description, title } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,6 +22,7 @@ const { description, title } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
 
   <body class="relative text-black dark:text-white">
@@ -38,18 +40,8 @@ const { description, title } = Astro.props
 
 <style is:global>
   :root {
-      color-scheme: light dark;
-
-      /* Paleta "Flavor-Full" del "Color Of The Year 2024 - Pantone" */
-      --color-year: #ffbe98; /* Peach Fuzz */
-      --color-complementary: #ca9456; /* Honey Yellow */
-      --color-complementary-2: #97754c; /* Dijon */
-      --color-complementary-3: #babc72; /* Green Banana */
-      --color-complementary-4: #2c333e; /* Blueberry */
-      --color-complementary-5: #8398ca; /* Grapemist */
-      --color-complementary-6: #c54966; /* Party Punch */
-      --color-complementary-7: #cdb127; /* Mango Mint */
-    }
+    color-scheme: light dark;
+  }
 
   html {
     font-family: "Onest Variable", system-ui, sans-serif;
@@ -57,7 +49,6 @@ const { description, title } = Astro.props
   }
 
   body {
-    margin: 0;
     color: rgba(17, 17, 17, 0.9);
     display: flex;
     flex-direction: column;
@@ -77,41 +68,56 @@ const { description, title } = Astro.props
     }
   }
 
-  /* Colores de texto */
-  .text-color-year {
-      color: var(--color-year);
-    }
+  #header-nav {
+    animation: blur linear both 0.5s;
+    animation-timeline: scroll();
+    animation-range: 0 500px;
+  }
 
-    .text-color-complementary {
-      color: var(--color-complementary);
+  @keyframes blur {
+    to {
+      backdrop-filter: blur(20px);
+      border-width: 1px;
+      border-color: rgba(0, 0, 0);
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background-color: rgb(229, 229, 229);
+      border-radius: 9999px;
     }
+  }
 
-    .text-color-complementary-2 {
-      color: var(--color-complementary-2);
+  @media (prefers-color-scheme: dark) {
+    @keyframes blur {
+      from {
+        border: 0px;
+      }
+      to {
+        box-shadow:
+          0px 5px 50px -5px rgba(0, 0, 0, 0.1),
+          0px 0px 0 1px rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(20px);
+        border-width: 1px;
+        border-color: rgba(0, 0, 0);
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 9999px;
+      }
     }
+  }
 
-    .text-color-complementary-3 {
-      color: var(--color-complementary-3);
-    }
-
-    .text-color-complementary-4 {
-      color: var(--color-complementary-4);
-    }
-
-    .text-color-complementary-5 {
-      color: var(--color-complementary-5);
-    }
-
-    .text-color-complementary-6 {
-      color: var(--color-complementary-6);
-    }
-
-    .text-color-complementary-7 {
-      color: var(--color-complementary-7);
-    }
-
-    /* Estilo para los enlaces al pasar el ratón */
-    a:hover {
-      color: var(--color-complementary-6);
-    }
+  .link-active {
+        @apply bg-white/40 font-semibold dark:bg-white/15 shadow-lg shadow-white/20 backdrop-blur-2xl;
+      }
 </style>
