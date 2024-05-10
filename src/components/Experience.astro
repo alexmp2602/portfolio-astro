@@ -1,19 +1,27 @@
 ---
+import { date } from "astro/zod";
 import ExperienceItem from "./ExperienceItem.astro";
 const EXPERIENCE = [
-  {
+{
     date: "Actualmente...",
-    title: "Desarrollador Frontend",
-    company: "Municipalidad de Mercedes Bs. As.",
-    description:
-      "Desarrollo de aplicaciones web para la gestión de la municipalidad y sus dependencias.",
-  },
-  {
-    date: "2022 - Presente",
     title: "Desarrollador Frontend - Freelance",
     company: "",
     description:
       "Desarrollo de aplicaciones web para clientes de distintos rubros.",
+  },
+  {
+    date: "2020 - Actualmente",
+    title: "Profesor de Robótica",
+    company: "IABOT",
+    description:
+      "Dictado de clases de robótica y programación para niños y adolescentes.",
+  },
+  {
+    date: "2023 - 2024",
+    title: "Desarrollador Frontend",
+    company: "Municipalidad de Mercedes Bs. As.",
+    description:
+      "Desarrollo de aplicaciones web para la gestión de la municipalidad y sus dependencias.",
   },
 ];
 ---
