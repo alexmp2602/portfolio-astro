@@ -1,53 +1,36 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-import AboutMe from "../components/AboutMe.astro";
-import Briefcase from "../components/icons/Briefcase.astro";
-import CodeIcon from "../components/icons/Code.astro";
-import Experience from "../components/Experience.astro";
-import ProfileCheck from "../components/icons/ProfileCheck.astro";
-import Projects from "../components/Projects.astro";
-import SectionContainer from "../components/SectionContainer.astro";
 import Hero from "../components/Hero.astro";
+import Experience from "../components/Experience.astro";
+import Projects from "../components/Projects.astro";
+import Skills from "../components/Skills.astro";
+import AboutMe from "../components/AboutMe.astro";
+import SectionContainer from "../components/SectionContainer.astro";
 ---
 
 <Layout
   title="Alex Pereyra - Desarrollador Frontend"
-  description="Soy un Desarrollador Frontend con más de 2 años de experiencia. Me especializo en crear aplicaciones únicas, rápidas y escalables."
+  description="Desarrollador Frontend con más de 3 años de experiencia en soluciones digitales escalables y optimizadas."
 >
   <main class="px-4">
-    <SectionContainer class="py-16 md:py-36">
+    <SectionContainer class="py-20 md:py-36">
       <Hero />
     </SectionContainer>
 
-    <div class="space-y-24">
+    <div class="space-y-32">
       <SectionContainer id="experiencia">
-        <h2
-          class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
-        >
-          <Briefcase class="size-8" />
-          Experiencia laboral
-        </h2>
         <Experience />
       </SectionContainer>
 
       <SectionContainer id="proyectos">
-        <h2
-          class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
-        >
-          <CodeIcon class="size-7" />
-          Proyectos
-        </h2>
         <Projects />
       </SectionContainer>
 
+      <SectionContainer id="habilidades">
+        <Skills />
+      </SectionContainer>
+
       <SectionContainer id="sobre-mi">
-        <h2
-          class="flex items-center mb-6 text-3xl font-semibold gap-x-8 text-black/80 dark:text-white"
-        >
-          <ProfileCheck class="size-8" />
-          Sobre mí
-        </h2>
         <AboutMe />
       </SectionContainer>
     </div>

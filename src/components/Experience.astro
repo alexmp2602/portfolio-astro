@@ -1,13 +1,7 @@
 ---
-import ExperienceItem from "./ExperienceItem.astro";
+import Briefcase from "./icons/Briefcase.astro";
+
 const EXPERIENCE = [
-  {
-    date: "Actualmente...",
-    title: "Desarrollador Frontend - Freelance",
-    company: "",
-    description:
-      "Desarrollo de aplicaciones web para clientes de distintos rubros.",
-  },
   {
     date: "2020 - Actualmente",
     title: "Profesor de Robótica",
@@ -25,11 +19,31 @@ const EXPERIENCE = [
 ];
 ---
 
-<ol class="relative mt-16">
+<!-- Título con Línea Amarilla -->
+<h2
+  class="flex items-center text-center md:text-left mb-8 text-3xl font-semibold gap-x-3 text-gray-900 dark:text-white
+         border-l-4 border-yellow-400 pl-4"
+>
+  <Briefcase class="size-8 hover:scale-105 transition-transform duration-300" />
+  Experiencia laboral
+</h2>
+
+<!-- Lista de Experiencia -->
+<ol class="relative mt-16 space-y-8">
   {
-    EXPERIENCE.map((experience) => (
-      <li class="">
-        <ExperienceItem {...experience} />
+    EXPERIENCE.map((experience, index) => (
+      <li
+        class="border-l-4 border-yellow-400 pl-6"
+        aria-label={`Experiencia ${index + 1}: ${experience.title} en ${experience.company}`}
+      >
+        <p class="text-yellow-300 font-medium">{experience.date}</p>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+          {experience.title}
+        </h3>
+        <h4 class="text-gray-600 dark:text-gray-400">{experience.company}</h4>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">
+          {experience.description}
+        </p>
       </li>
     ))
   }

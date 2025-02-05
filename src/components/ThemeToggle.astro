@@ -3,7 +3,12 @@ import SunIcon from "./icons/Sun.astro";
 import MoonIcon from "./icons/Moon.astro";
 import SystemIcon from "./icons/System.astro";
 
-const THEMES = ["Light", "Dark", "System"];
+// Traducción de los temas con sus respectivos iconos
+const THEMES = [
+  { label: "Claro", value: "light", icon: SunIcon },
+  { label: "Oscuro", value: "dark", icon: MoonIcon },
+  { label: "Sistema", value: "system", icon: SystemIcon },
+];
 ---
 
 <div class="relative ml-1 mr-1">
@@ -13,24 +18,25 @@ const THEMES = ["Light", "Dark", "System"];
   >
     <span class="sr-only">Elige el tema</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
-    <MoonIcon
-      id="dark"
-      class="theme-toggle-icon absolute size-5 transition-all"
-    />
-    <SystemIcon
-      id="system"
-      class="theme-toggle-icon absolute size-5 transition-all"
-    />
+    <MoonIcon id="dark" class="theme-toggle-icon absolute size-5 transition-all" />
+    <SystemIcon id="system" class="theme-toggle-icon absolute size-5 transition-all" />
   </button>
+  
+  <!-- Menú de selección de tema -->
   <div
     id="themes-menu"
-    class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
+    class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[9rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
   >
     <ul>
       {
-        THEMES.map((theme) => (
-          <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
-            {theme}
+        THEMES.map(({ label, value, icon: Icon }) => (
+          <li
+            class="themes-menu-option px-3 py-1.5 cursor-pointer flex items-center gap-3 
+                   hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm transition-all"
+            data-theme={value}
+          >
+            <Icon class="size-5 text-gray-700 dark:text-gray-300" />
+            {label}
           </li>
         ))
       }
@@ -62,6 +68,7 @@ const THEMES = ["Light", "Dark", "System"];
   const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
   const themesMenu = document.getElementById("themes-menu");
 
+  // Obtener la preferencia de tema en español
   const getThemePreference = () => {
     if (typeof localStorage !== "undefined") {
       return localStorage.getItem("theme") ?? "system";
@@ -72,12 +79,14 @@ const THEMES = ["Light", "Dark", "System"];
       : "light";
   };
 
+  // Actualizar el icono según el tema seleccionado
   const updateIcon = (themePreference) => {
     document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
       element.style.scale = element.id === themePreference ? "1" : "0";
     });
   };
 
+  // Actualizar el tema y aplicar cambios en la interfaz
   const updateTheme = () => {
     if (remove != null) {
       remove();
@@ -100,15 +109,18 @@ const THEMES = ["Light", "Dark", "System"];
 
   document.addEventListener("click", () => themesMenu.classList.remove("open"));
 
+  // Manejo del botón para abrir el menú de selección de tema
   document.getElementById("theme-toggle-btn").addEventListener("click", (e) => {
     e.stopPropagation();
     const isClosed = !themesMenu.classList.contains("open");
     themesMenu.classList[isClosed ? "add" : "remove"]("open");
   });
 
+  // Asignar el tema seleccionado y almacenarlo en localStorage
   document.querySelectorAll(".themes-menu-option").forEach((element) => {
     element.addEventListener("click", (e) => {
-      localStorage.setItem("theme", e.target.innerText.toLowerCase().trim());
+      const selectedTheme = e.target.closest("li").getAttribute("data-theme");
+      localStorage.setItem("theme", selectedTheme);
       updateTheme();
     });
   });

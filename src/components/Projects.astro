@@ -7,6 +7,7 @@ import React from "./icons/React.astro";
 import NextJS from "./icons/NextJS.astro";
 import Tailwind from "./icons/Tailwind.astro";
 import AstroIcon from "./icons/AstroIcon.astro";
+import CodeIcon from "./icons/Code.astro";
 
 import LinkButton from "./LinkButton.astro";
 
@@ -42,16 +43,37 @@ const TAGS = {
     icon: AstroIcon,
   },
 };
+
 const PROJECTS = [
   {
-    title: "IABOT - Cursos de Robótica en LEGO para Niños",
+    title: "Sistema Integral de Gestión Judicial (SIGJ)",
+    description:
+      "Aplicación moderna para la gestión digital de expedientes, documentación y agenda en entornos administrativos. Desarrollada con Next.js, React y Tailwind CSS, esta solución optimiza flujos de trabajo, automatiza procesos y mejora la accesibilidad a la información.",
+    link: "#",
+    github: "https://github.com/alexmp2602/sigj",
+    image: "/projects/sigj.webp",
+    tags: [TAGS.NEXT, TAGS.REACT, TAGS.TAILWIND],
+  },
+  {
+    title: "IABOT | Cursos de Robótica en LEGO para Niños",
     description:
       "Sitio web para la empresa IABOT, que ofrece cursos de robótica en LEGO para niños. Hecho con Next.js y Tailwind CSS.",
     link: "https://iabot.com.ar/",
     github: "https://github.com/alexmp2602/iabot-v2",
     image: "/projects/iabot.webp",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+    tags: [TAGS.NEXT, TAGS.REACT, TAGS.TAILWIND],
   },
+  {
+    title: "Gallinas Libres | Huevos de Gallinas Libres",
+    description:
+      "Sitio web para el emprendimiento Gallinas Libres, que ofrece huevos de gallinas libres. Hecho con Astro y Tailwind CSS.",
+    link: "https://www.gallinaslibres.com/",
+    github: "https://github.com/alexmp2602/gallinas-libres",
+    image: "/projects/gallinas.webp",
+    tags: [TAGS.ASTRO, TAGS.TAILWIND],
+  },
+
+
   {
     title: "Domus | Estética Profesional",
     description:
@@ -62,7 +84,7 @@ const PROJECTS = [
     tags: [TAGS.ASTRO, TAGS.TAILWIND],
   },
   {
-    title: "Apri - Cerrajería 24 horas",
+    title: "Apri | Cerrajería 24 horas",
     description:
       "Sitio web para la empresa Apri, que ofrece servicios de cerrajería 24 horas. Hecho con Next.js y Tailwind CSS.",
     link: "https://www.cerrajeriaapri24hs.com.ar/",
@@ -70,73 +92,86 @@ const PROJECTS = [
     image: "/projects/apri.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
   },
-  {
-    title: "Portfolio React Antiguo",
-    description:
-      "Mi antiguo portfolio hecho en React. Fue mi primer proyecto en React y me ayudó a aprender mucho sobre el framework.",
-    link: "https://alexpereyra-react.vercel.app/",
-    github: "https://github.com/alexmp2602/portfolio-react",
-    image: "/projects/portfolio-react.webp",
-    tags: [TAGS.REACT, TAGS.SASS],
-  },
 ];
+
 ---
 
-<div class="flex flex-col gap-y-12">
-  <div class="flex flex-col gap-y-16">
-    {
-      PROJECTS.map(({ image, title, description, tags, link, github }) => (
-        <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-          <div class="w-full md:w-1/2">
-            <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-              <img
-                alt="Project Image"
-                class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
-                loading="lazy"
-                src={image}
-              />
-            </div>
+<h2
+  class="flex items-center text-center md:text-left mb-8 text-3xl font-semibold gap-x-3 text-gray-900 dark:text-white border-l-4 border-yellow-400 pl-4"
+>
+  <CodeIcon class="size-7 hover:scale-110 transition-transform duration-300" />
+  Proyectos
+</h2>
+
+<div class="flex flex-col gap-y-10 md:gap-y-16">
+  {
+    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <!-- Imagen del Proyecto -->
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center overflow-hidden shadow-2xl rounded-xl transition-all duration-500 hover:scale-105">
+            <img
+              alt={`Vista previa de ${title}`}
+              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full hover:scale-105 rounded-lg"
+              src={image}
+              decoding="async"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+
+        <!-- Información del Proyecto -->
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+            {title}
+          </h3>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap mt-2">
+            <ul class="flex flex-row mb-2 gap-x-2">
+              {tags.map((tag) => (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div class="w-full md:w-1/2 md:max-w-lg">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-              {title}
-            </h3>
-            <div class="flex flex-wrap mt-2">
-              <ul class="flex flex-row mb-2 gap-x-2">
-                {tags.map((tag) => (
-                  <li>
-                    <span
-                      class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-                    >
-                      <tag.icon class="size-4" />
-                      {tag.name}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+          <!-- Descripción -->
+          <p class="mt-2 text-gray-700 dark:text-gray-400 leading-relaxed">
+            {description}
+          </p>
 
-              <div class="mt-2 text-gray-700 dark:text-gray-400">
-                {description}
-              </div>
-              <footer class="flex items-end justify-start mt-4 gap-x-4">
-                {github && (
-                  <LinkButton href={github}>
-                    <GitHub class="size-6" />
-                    Código
-                  </LinkButton>
-                )}
-                {link && (
-                  <LinkButton href={link}>
-                    <Link class="size-4" />
-                    Visitar
-                  </LinkButton>
-                )}
-              </footer>
-            </div>
-          </div>
-        </article>
-      ))
-    }
-  </div>
+          <!-- Botones -->
+          <footer class="flex items-end justify-start mt-4 gap-x-4">
+            {github && (
+              <LinkButton
+                href={github}
+                aria-label={`Código fuente de ${title}`}
+                class="transition-transform duration-300 hover:scale-105"
+              >
+                <GitHub class="size-6" />
+                Código
+              </LinkButton>
+            )}
+            {link && (
+              <LinkButton
+                href={link}
+                aria-label={`Visitar sitio web de ${title}`}
+                class="transition-transform duration-300 hover:scale-105"
+              >
+                <Link class="size-4" />
+                Visitar
+              </LinkButton>
+            )}
+          </footer>
+        </div>
+      </article>
+    ))
+  }
 </div>
