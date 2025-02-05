@@ -1,19 +1,20 @@
 {
   "name": "portfolio-dev",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "install": "npm install --legacy-peer-deps"
   },
   "dependencies": {
     "@astrojs/check": "0.9.4",
     "@astrojs/tailwind": "6.0.0",
     "@fontsource-variable/onest": "5.1.1",
-    "astro": "5.2.3",
+    "astro": "5.2.5",
     "astro-robots-txt": "1.0.0",
     "tailwindcss": "4.0.3",
     "typescript": "5.7.3"
